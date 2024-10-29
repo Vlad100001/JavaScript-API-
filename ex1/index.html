@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание занятий</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .activity {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="my-4">Расписание занятий</h1>
+        <div id="activities"></div>
+    </div>
+
+    <script>
+        const activitiesData = [
+            {
+                "title": "Йога",
+                "time": "10:00 - 11:00",
+                "maxParticipants": 20,
+                "currentParticipants": 15
+            },
+            {
+                "title": "Пилатес",
+                "time": "11:30 - 12:30",
+                "maxParticipants": 15,
+                "currentParticipants": 15
+            },
+            {
+                "title": "Танцы",
+                "time": "13:00 - 14:00",
+                "maxParticipants": 25,
+                "currentParticipants": 20
+            }
+        ];
+
+        function renderActivities() {
+            const activitiesContainer = document.getElementById('activities');
+            activitiesContainer.innerHTML = '';
+
+            activitiesData.forEach((activity, index) => {
+                const activityDiv = document.createElement('div');
+                activityDiv.className = 'activity';
+                activityDiv.innerHTML = `
+                    <h5>${activity.title}</h5>
+                    <p>Время: ${activity.time}</p>
+                    <p>Максимальное количество участников: ${activity.maxParticipants}</p>
+                    <p>Записанные участники: <span id="participants-${index}">${activity.currentParticipants}</span></p>
+                    <button id="register-${index}" class="btn btn-primary" ${activity.currentParticipants >= activity.maxParticipants ? 'disabled' : ''}>Записаться</button>
+                    <button id="cancel-${index}" class="btn btn-danger" ${activity.currentParticipants === 0 ? 'disabled' : ''}>Отменить запись</button>
+                `;
+
+                activitiesContainer.appendChild(activityDiv);
+
+                document.getElementById(`register-${index}`).addEventListener('click', () => {
+                    if (activity.currentParticipants < activity.maxParticipants) {
+                        activity.currentParticipants++;
+                        renderActivities();
+                    }
+                });
+
+                document.getElementById(`cancel-${index}`).addEventListener('click', () => {
+                    if (activity.currentParticipants > 0) {
+                        activity.currentParticipants--;
+                        renderActivities();
+                    }
+                });
+            });
+        }
+
+        renderActivities();
+    </script>
+</body>
+
+</html>
