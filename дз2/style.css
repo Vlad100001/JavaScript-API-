@@ -1,0 +1,74 @@
+@charset "UTF-8";
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+.slider-container {
+  text-align: center;
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 90%;
+  /* Устанавливаем ширину контейнера */
+  max-width: 800px;
+  /* Максимальная ширина контейнера */
+}
+
+.image-display img {
+  width: 100%;
+  /* Изображение по ширине контейнера */
+  height: auto;
+  /* Автоматическая высота для сохранения пропорций */
+  border-radius: 8px;
+}
+
+.navigation-buttons {
+  margin: 20px 0;
+}
+
+button {
+  padding: 15px 25px;
+  margin: 0 10px;
+  cursor: pointer;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.2s;
+  font-size: 18px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+  /* Эффект увеличения при наведении */
+}
+
+.indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.indicator {
+  width: 12px;
+  /* Увеличиваем размер индикаторов */
+  height: 12px;
+  margin: 0 5px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.indicator.active {
+  background-color: #333;
+}/*# sourceMappingURL=style.css.map */
